@@ -14,11 +14,25 @@ function App() {
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
 
+  const [filter, setFilter] = useState("");
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
+
+  const handleAddContact = (newContact) => {
+    setContacts([...contacts, newContact]);
+  };
+
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
+      <ContactForm onAddContact={handleAddContact} />
+      <SearchBox filter={filter} onFilterChange={handleFilterChange} />
       <ContactList contacts={contacts} />
     </div>
   );
