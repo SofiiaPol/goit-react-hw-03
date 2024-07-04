@@ -1,0 +1,21 @@
+.contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid grey;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  font-size: 15px;
+}
+
+.deleteButton {
+  max-width: 100px;
+  /* margin: 0 auto; */
+  /* border: 2px solid grey; */
+  /* padding: 10px; */
+  text-align: center;
+  background-color: darkred;
+  color: #f0f0f0;
+}

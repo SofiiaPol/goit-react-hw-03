@@ -1,5 +1,7 @@
 import styles from "./ContactForm.module.css";
 import { useFormik } from "formik";
+import * as Yup from "yup";
+import { nanoid } from "nanoid";
 
 function ContactForm({ onAddContact }) {
   const formik = useFormik({
@@ -7,13 +9,32 @@ function ContactForm({ onAddContact }) {
       name: "",
       number: "",
     },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(3, "the min number of characters is 3")
+        .max(50, "the max number of characters is 50")
+        .required("required field"),
+      number: Yup.string()
+        .min(3, "the min number of characters is 3")
+        .max(50, "the max number of characters is 50")
+        .required("required field"),
+    }),
+    onSubmit: (values) => {
+      const newContact = {
+        id: nanoid(),
+        ...values,
+      };
+      onAddContact(newContact);
+      formik.resetForm();
+    },
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div>
+    <form className={styles.contactForm} onSubmit={formik.handleSubmit}>
+      <div className={styles.addContact}>
         <label htmlFor="name">Name</label>
         <input
+          className={styles.input}
           id="name"
           name="name"
           type="text"
@@ -25,9 +46,10 @@ function ContactForm({ onAddContact }) {
           <div>{formik.errors.name}</div>
         ) : null}
       </div>
-      <div>
+      <div className={styles.addContact}>
         <label htmlFor="number">Number</label>
         <input
+          className={styles.input}
           id="number"
           name="number"
           type="text"
@@ -39,7 +61,9 @@ function ContactForm({ onAddContact }) {
           <div>{formik.errors.number}</div>
         ) : null}
       </div>
-      <button type="submit">Add Contact</button>
+      <button className={styles.addButton} type="submit">
+        Add Contact
+      </button>
     </form>
   );
 }

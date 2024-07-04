@@ -1,0 +1,29 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  max-width: 500px;
+  /* align-items: center; */
+}
+
+.addContact {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.input {
+  padding: 10px;
+  border: 2px solid grey;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.addButton {
+  max-width: 120px;
+  margin: 0 auto;
+  border: 2px solid grey;
+  padding: 10px;
+  text-align: center;
+  background-color: lightgray;
+}

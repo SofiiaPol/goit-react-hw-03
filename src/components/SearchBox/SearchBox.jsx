@@ -1,8 +1,10 @@
+import { useFormik } from "formik";
 import styles from "./SearchBox.module.css";
 
 function SearchBox({ filter, onFilterChange }) {
   return (
     <input
+      className={styles.input}
       type="text"
       placeholder="Search contacts..."
       value={filter}
